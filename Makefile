@@ -23,6 +23,7 @@ lib/libglfw3.a:
 	cp vendor/glfw/build/src/libglfw3.a $@
 
 lib/libglad.a:
+	$(DIR_GUARD)
 	make -C vendor/glad
 	cp vendor/glad/dist/libglad.a lib/libglad.a
 
