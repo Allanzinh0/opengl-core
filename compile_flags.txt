@@ -1,0 +1,4 @@
+-I
+vendor/glfw/include
+-I
+vendor/glad/inc

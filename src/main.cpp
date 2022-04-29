@@ -1,0 +1,47 @@
+#include <iostream>
+#define GLFW_INCLUDE_NONE
+#include <GLFW/glfw3.h>
+#include <glad/glad.h>
+
+int WIDTH = 640;
+int HEIGHT = 480;
+
+int main(void) {
+  GLFWwindow *window;
+
+  /* Initialize the library */
+  if (!glfwInit())
+    return -1;
+
+  /* Create a windowed mode window and its OpenGL context */
+  window = glfwCreateWindow(WIDTH, HEIGHT, "Hello World", NULL, NULL);
+  if (!window) {
+    glfwTerminate();
+    return -1;
+  }
+
+  /* Make the window's context current */
+  glfwMakeContextCurrent(window);
+
+  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+    std::cout << "Failed to initialize OpenGL context" << std::endl;
+    return -1;
+  }
+
+  glViewport(0, 0, WIDTH, HEIGHT);
+
+  /* Loop until the user closes the window */
+  while (!glfwWindowShouldClose(window)) {
+    /* Render here */
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    /* Swap front and back buffers */
+    glfwSwapBuffers(window);
+
+    /* Poll for and process events */
+    glfwPollEvents();
+  }
+
+  glfwTerminate();
+  return 0;
+}
