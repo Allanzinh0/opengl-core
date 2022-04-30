@@ -10,10 +10,16 @@ RELEASE_ARGS = -Wall -O3
 
 DIR_GUARD=$(shell [ ! -d $(@D) ] && mkdir -p $(@D))
 
-debug: ${DEBUG_OBJS} lib/libglad.a lib/libglfw3.a 
+debug: debug.out
+	./debug.out
+
+release: release.out
+	./release.out
+
+debug.out: ${DEBUG_OBJS} lib/libglad.a lib/libglfw3.a 
 	g++ $(DEBUG_ARGS) -Llib $(patsubst %,-I%,$(INCLUDE_FOLDERS)) -o debug.out $^
 
-release: ${RELEASE_OBJS} lib/libglfw3.a lib/libglad.a
+release.out: ${RELEASE_OBJS} lib/libglfw3.a lib/libglad.a
 	g++ $(RELEASE_ARGS) -Llib $(patsubst %,-I%,$(INCLUDE_FOLDERS)) -o release.out $^
 
 lib/libglfw3.a:

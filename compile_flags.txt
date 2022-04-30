@@ -2,3 +2,4 @@
 vendor/glfw/include
 -I
 vendor/glad/inc
+-std=c++17
